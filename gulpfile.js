@@ -5,7 +5,7 @@
  { 
      build: {  
         html: project_folder + "/", 
-        css: project_folder + "/css/", 
+        css: project_folder + "/scss/", 
         js: project_folder + "/js/", 
         img: project_folder + "/img/", 
         fonts: project_folder + "/fonts/", 
@@ -19,7 +19,6 @@
     },
     watch: {
         html: source_folder + "/**/*.html",
-        
         css: source_folder + "/scss/**/*.scss",
         js: source_folder + "/js/**/*.js",
         img: source_folder + "/img/**/*.{jpg, png, svg, gif,ico,webp}" 
@@ -43,7 +42,6 @@ let { src, dest } = require('gulp'),
     ttf2woff = require("gulp-ttf2woff"),
     ttf2woff2 = require("gulp-ttf2woff2"),
     fonter = require("gulp-fonter"),
-    webpack = require("webpack-stream"),
     scss = require('gulp-sass')(require('sass'));
 
 
@@ -67,7 +65,7 @@ function html() {
         .pipe(browsersync.stream())    
 }
 function css() {
-    return src(path.src.css)
+    return src([path.src.css, source_folder + "/scss/**/*.css"])
         .pipe(
             scss({
                 outputStyle: "expanded"
@@ -95,12 +93,9 @@ function css() {
 }
 
 function js() {
-    return src(path.src.js)
+    return src([path.src.js, source_folder + "/js/**/*.js"])
         .pipe(fileinclude())
-        .pipe(dest(path.build.js))
-        .pipe(webpack({
-            mode: "development"
-        }))
+        .pipe(dest(path.build.js))           
         .pipe(
             uglify()
         )        
