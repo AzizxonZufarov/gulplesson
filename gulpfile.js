@@ -10,6 +10,7 @@ let path =
         img: project_folder + "/img/",
         fonts: project_folder + "/fonts/",
     },
+
     src: {
         html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
         css: source_folder + '/scss/style.scss',
