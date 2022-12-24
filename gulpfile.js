@@ -1,31 +1,34 @@
- let project_folder = "dist"; 
- let source_folder = "src"; 
+let project_folder = "dist";
+let source_folder = "src";
 
- let path = 
- { 
-     build: {  
-        html: project_folder + "/", 
-        css: project_folder + "/scss/", 
-        js: project_folder + "/js/", 
-        img: project_folder + "/img/", 
-        fonts: project_folder + "/fonts/", 
+let path =
+{
+    build: {
+        html: project_folder + "/",
+        css: project_folder + "/css/",
+        js: project_folder + "/js/",
+        img: project_folder + "/img/",
+        fonts: project_folder + "/fonts/",
     },
-    src: { 
-        html: [source_folder + "/*.html", "!" + source_folder + "/_*.html" ],
-        css: source_folder + "/scss/style.scss", 
-        js: source_folder + "/js/app.js", 
-        img: source_folder + "/img/**/*.{jpg, png, svg, gif,ico, webp}", 
+    src: {
+        html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
+        css: source_folder + '/scss/style.scss',
+        js: source_folder + "/js/app.js",
+        img: source_folder + "/img/**/*.{jpg, png, svg, gif,ico, webp}",
         fonts: source_folder + "/fonts/*.ttf"
     },
     watch: {
         html: source_folder + "/**/*.html",
         css: source_folder + "/scss/**/*.scss",
         js: source_folder + "/js/**/*.js",
-        img: source_folder + "/img/**/*.{jpg, png, svg, gif,ico,webp}" 
+        img: source_folder + "/img/**/*.{jpg, png, svg, gif,ico,webp}"
     },
     clean: "./" + project_folder + "/"
- }    
-let { src, dest } = require('gulp'), 
+}
+
+console.log('11');
+
+let { src, dest } = require('gulp'),
     gulp = require('gulp'),
     browsersync = require("browser-sync").create(),
     fileinclude = require("gulp-file-include"),
@@ -46,12 +49,12 @@ let { src, dest } = require('gulp'),
 
 
 function browserSync(params) {
-    browsersync.init({ 
+    browsersync.init({
         server: {
             baseDir: "./" + project_folder + "/"
         },
         port: 3000,
-        notify: false    
+        notify: false
     })
 }
 
@@ -60,12 +63,12 @@ function html() {
     return src(path.src.html)
 
         .pipe(fileinclude())
-        .pipe(webphtml())        
+        .pipe(webphtml())
         .pipe(dest(path.build.html))
-        .pipe(browsersync.stream())    
+        .pipe(browsersync.stream())
 }
 function css() {
-    return src([path.src.css, source_folder + "/scss/**/*.css"])
+    return src([path.src.css])
         .pipe(
             scss({
                 outputStyle: "expanded"
@@ -81,31 +84,31 @@ function css() {
             })
         )
         .pipe(webpcss())
-        .pipe(dest(path.build.css))     
+        .pipe(dest(path.build.css))
         .pipe(clean_css())
         .pipe(
             rename({
                 extname: ".min.css"
             })
         )
-        .pipe(dest(path.build.css))        
-        .pipe(browsersync.stream())    
+        .pipe(dest(path.build.css))
+        .pipe(browsersync.stream())
 }
 
 function js() {
     return src([path.src.js, source_folder + "/js/**/*.js"])
         .pipe(fileinclude())
-        .pipe(dest(path.build.js))           
+        .pipe(dest(path.build.js))
         .pipe(
             uglify()
-        )        
+        )
         .pipe(
             rename({
                 extname: ".min.js"
             })
-        )     
-        .pipe(dest(path.build.js))            
-        .pipe(browsersync.stream())    
+        )
+        .pipe(dest(path.build.js))
+        .pipe(browsersync.stream())
 }
 
 function images() {
@@ -115,8 +118,8 @@ function images() {
                 quality: 70
             })
         )
-        .pipe(dest(path.build.img))        
-        .pipe(src(path.src.img))        
+        .pipe(dest(path.build.img))
+        .pipe(src(path.src.img))
         .pipe(
             imagemin({
                 progressive: true,
@@ -126,7 +129,7 @@ function images() {
             })
         )
         .pipe(dest(path.build.img))
-        .pipe(browsersync.stream())    
+        .pipe(browsersync.stream())
 }
 
 function fonts() {
@@ -138,7 +141,7 @@ function fonts() {
         .pipe(dest(path.build.fonts))
 }
 
-gulp.task('otf2ttf', function() {
+gulp.task('otf2ttf', function () {
     return src([source_folder + '/fonts/*.otf'])
         .pipe(fonter({
             formats: ['ttf']
@@ -148,7 +151,7 @@ gulp.task('otf2ttf', function() {
 })
 
 
-gulp.task('svgSprite', function() {
+gulp.task('svgSprite', function () {
     return gulp.src([source_folder + '/iconsprite/*.svg'])
         .pipe(svgSprite({
             mode: {
