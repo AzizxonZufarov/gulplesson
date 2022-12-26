@@ -89,9 +89,9 @@
         background: #edf7fa;
         padding: 25px 0 13px 0;
 		// .recent-posts__container
-@media (max-width: $mobile) {
-      padding: 25px 0 23px 0;
-}
+        @media (max-width: $mobile) {
+            padding: 25px 0 23px 0;
+        }
 		&__container {
 		}
 
@@ -257,11 +257,11 @@
 
 //====================================================================================================
 .featured-works {
-    padding: 30px 0 80px 0;
+        padding: 30px 0 80px 0;
 		// .featured-works__container
-  /*   @media (max-width: $mobile) {
-        padding: 30px 0 30px 0;
-    } */
+        @media (max-width: $mobile) {
+            padding: 30px 0 30px 0;
+        } 
 		&__container {
 
 		}
@@ -271,17 +271,35 @@
 		&__title {
             margin: 0 0 20px 0;
 		}
+
+        &__items {
+        @media (max-width: $mobile) {
+            display: flex;
+            overflow: auto;
+            .works__item {
+                flex: 0 0 90%;
+                margin: 0 15px 0 0;
+            }
+        } 
+        }
 }
 
 
-.works {
 
+.works {
+    padding-bottom: 60px;
+    @media (max-width: $mobile) {
+        padding-bottom: 30px;
+    }
 		// .works__item
 
 		&__item {
             padding:  0 0 35px 0;
             margin: 0 0 30px 0;
             border-bottom: 1px solid #e0e0e0;
+            &:last-child {
+                margin-bottom: 0;
+            }
             @media (min-width: $mobile) {
                 display: flex;
                 align-items: flex-start;
@@ -306,7 +324,6 @@
 
 		&__body {
             flex: 1 1 auto;
-            padding: 0 0 0 18px;
             @media (min-width: $mobile) {
                 padding:  0 0 0 18px;
             }            
@@ -321,9 +338,15 @@
             font-weight: 700;
             line-height: calc(44/30*100%);
             margin:  0 0 15px 0;
-            @media (min-width: $mobile) {
+            transition: color 0.3s ease 0s;
+            @media (max-width: $mobile) {
                 font-size: 24px;
-            }            
+            }
+            @media (min-width: $tablet) {
+                &:hover {
+                    color: #ff6464;
+                }
+            }
 		}
 
 		// .works__info
@@ -361,5 +384,12 @@
 
 		&__text {
 		}
+
+        &__main-title {
+            margin: 0 0 45px 0;
+            @media (max-width: $mobile) {
+                margin: 0 0 20px 0;
+            }
+        }
 }
 

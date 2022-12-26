@@ -9,7 +9,7 @@
 @import url("https://fonts.googleapis.com/css?family=Heebo:regular,500,700,900&display=swap&subset=cyrillic-ext");
 
 // Подключить если есть локальные файлы шрифтов
-//@import "fonts/fonts";
+@import "fonts/fonts";
 
 // Подключение иконочных шрифтов ==============================================================================================================================================================================================================================================================================
 
@@ -129,6 +129,8 @@ body {
 // Подключение базовых стилей, шаблонов (заготовок) и вспомогательных  классов
 // Для подключения/отключения конкретных стилей смотри base.scss
 @import "base";
+@import "blog";
+@import "article";
 
 // Подключение стилей общих элементов проекта
 @import "common";
@@ -157,5 +159,34 @@ body {
 		top: 0;
 		left: 0;
 		object-fit: cover;
+	}
+}
+
+.social {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// .social__item
+
+		&__item {
+			font-size: 35px;
+			transition: all 0.3s ease 0s;
+			margin: 0 17px;
+			color: inherit;
+			@media (min-width: $tablet) {
+				&:hover {
+					color: #ff6464;
+				}
+			}
+		}
+}
+
+@mixin font($font_name, $file_name, $weight, $style) {
+		@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff") format("woff"), url("../fonts/#{$file_name}.woff2") format("woff2");
+		font-weight: #{$weight};
+		font-style: #{$style};
 	}
 }
