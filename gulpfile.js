@@ -27,7 +27,7 @@ let path =
     clean: "./" + project_folder + "/"
 }
 
-console.log('11');
+
 
 let { src, dest } = require('gulp'),
     gulp = require('gulp'),
@@ -97,7 +97,7 @@ function css() {
 }
 
 function js() {
-    return src([path.src.js, source_folder + "/js/**/*.js"])
+    return src(path.src.js)
         .pipe(fileinclude())
         .pipe(dest(path.build.js))
         .pipe(
@@ -150,8 +150,6 @@ gulp.task('otf2ttf', function () {
         ))
         .pipe(dest(source_folder + '/fonts/'));
 })
-
-
 gulp.task('svgSprite', function () {
     return gulp.src([source_folder + '/iconsprite/*.svg'])
         .pipe(svgSprite({
