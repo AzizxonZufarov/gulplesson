@@ -1,5 +1,5 @@
-//let project_folder = "dist";
-let project_folder = require("path").basename(__dirname);
+let project_folder = "dist";
+//let project_folder = require("path").basename(__dirname);
 let source_folder = "src";
 
 let fs = require('fs');
@@ -100,7 +100,7 @@ function css() {
 }
 
 function js() {
-    return src(path.src.js)
+    return src([path.src.js, path.watch.js])
         .pipe(fileinclude())
         .pipe(dest(path.build.js))
         .pipe(

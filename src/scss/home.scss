@@ -66,6 +66,7 @@
     // .hello__avatar
 
     &__avatar {
+        z-index: -1;
         flex: 0 0 243px;
         height: 243px;
         position: relative;
@@ -309,6 +310,7 @@
 		// .works__image
 
 		&__image {
+            z-index: -1;
             flex:  0 0 246px;
             display: block;
             border-radius: 6px;

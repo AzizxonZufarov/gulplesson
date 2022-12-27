@@ -31,7 +31,6 @@
 	// .menu__icon
 
 	&__icon {
-
 	}
 
 	// .menu__body
@@ -48,7 +47,7 @@
 			overflow: auto;
 			padding: 70px 10px 30px 10px;
 			background-color: rgba(255, 255, 255, 1);
-			&._active {
+			&_active {
 				transform: translate(0px, 0%);
 			} 
 		}
@@ -99,6 +98,50 @@
 //====================================================================================================
 
 //Burger
+/*
+.icon-menu {
+	display: none;
+	@media (max-width: $mobile) {
+		display: block;
+		position: absolute;
+		top: 18px;
+		right: 10px;
+		width: 30px;
+		height: 18px;
+		cursor: pointer;
+		z-index: 5;
+		span {
+			transition: all 0.3s ease 0s;
+			top: 50%;
+			left: 0px;
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			background-color: #000;
+		}
+		&:first-child {
+			top: 0px;
+		}
+		&:last-child {
+			top: auto;
+			bottom: 0px;
+		}
+	}
+	&._active {
+		span {
+			transform: scale(0);
+			&:first-child {
+				transform: rotate(-45deg);
+				top: 50%;
+			}
+			&:last-child {
+				transform: rotate(45deg);
+				bottom: 50%;
+			}
+		}
+	}
+}
+*/
 
 .icon-menu {
 	display: none;

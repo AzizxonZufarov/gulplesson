@@ -32,6 +32,9 @@ flsFunctions.isWebp();
 /* Модуль для работы с меню (Бургер) */
 flsFunctions.menuInit();
 
+document.querySelector(".menu__icon").addEventListener("click", () => {
+    document.querySelector(".menu__body").classList.toggle("menu__body_active");
+})
 
 
 
